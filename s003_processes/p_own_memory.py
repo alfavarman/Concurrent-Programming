@@ -15,10 +15,12 @@ if __name__ == '__main__':
     Q: why mutable is printed as -1 and not seeing the change?
     because when we create process you got separate memory
     """
-    arr = [-1] * 10
+    #arr = [-1] * 10
+    # typecode_or_type, size_or_initializertypecode_or_type, size_or_initializer, Lock=True
+    arr = multiprocessing.Array('i', [-1] * 10)
     p = Process(target=print_array_contents, args=(arr,))
     p.start()
     for j in range(10):
-        time.sleep(2.5)
+        time.sleep(1)
         for i in range(10):
             arr[i] = j
